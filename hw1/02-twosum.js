@@ -23,16 +23,16 @@ Output: [0,1]
 
 **/
 
-function twoSum(nums, target) {
+const twoSum = function twoSum(nums, target) {
   const intMap = new Map();
-  for (let i = 0; i < nums.length; ++i) {
+  for (let i = 0; i < nums.length; i += 1) {
     const temp = target - nums[i];
     if (intMap.has(temp)) {
       return [intMap.get(temp), i];
     }
     intMap.set(nums[i], i);
   }
-}
+};
 
 console.log(twoSum([2, 7, 11, 15], 9));
 console.log(twoSum([3, 2, 4], 6));

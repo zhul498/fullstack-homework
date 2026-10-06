@@ -27,9 +27,9 @@ Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13"
 
 **/
 
-function fizzbuzz(num) {
+const fizzbuzz = function fizzbuzz(num) {
   const answer = [];
-  for (let i = 1; i <= num; ++i) {
+  for (let i = 1; i <= num; i += 1) {
     if (i % 3 === 0 && i % 5 === 0) {
       answer.push("FizzBuzz");
     } else if (i % 3 === 0) {
@@ -41,11 +41,11 @@ function fizzbuzz(num) {
     }
   }
   return answer;
-}
+};
 
-answer = fizzbuzz(3);
-answerTwo = fizzbuzz(5);
-answerThree = fizzbuzz(15);
+const answer = fizzbuzz(3);
+const answerTwo = fizzbuzz(5);
+const answerThree = fizzbuzz(15);
 
 console.log(answer);
 console.log(answerTwo);
