@@ -21,8 +21,30 @@ const server = http.createServer((req, res) => {
     'other',
   ];
 
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('Node Routing Exercise');
+  if (req.url === '/welcome') {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('Welcome to my glorious page');
+  } else if (req.url === '/redirect') {
+    res.writeHead(302, { Location: '/redirected' });
+  } else if (req.url === '/redirected') {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('Welcome to my redirected page');
+  } else if (req.url === '/cache') {
+    res.writeHead(200, {
+      'Content-Type': 'text/html',
+      'Cache-Control': 'max-age=86400',
+    });
+    res.write('this resource was cached');
+  } else if (req.url === '/cookie') {
+    res.writeHead(200, {
+      'Content-Type': 'text/plain',
+      'Set-Cookie': 'hello=world',
+    });
+    res.write('cookies… yummm');
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/html' });
+    res.write('404 - page not found');
+  }
   res.end();
 });
 
