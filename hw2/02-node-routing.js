@@ -1,4 +1,5 @@
 const http = require('http');
+
 const port = process.env.PORT || 5001;
 
 // http://localhost:5001/welcome should return a status code 200 with a welcome message of your choice in html format
@@ -12,15 +13,6 @@ const port = process.env.PORT || 5001;
 // For other routes, such as http://localhost:5001/other, this exercise should return a status code 404 with '404 - page not found' in html format
 
 const server = http.createServer((req, res) => {
-  const routes = [
-    'welcome',
-    'redirect',
-    'redirected',
-    'cache',
-    'cookie',
-    'other',
-  ];
-
   if (req.url === '/welcome') {
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write('Welcome to my glorious page');
