@@ -13,7 +13,7 @@ app.get('/form', (req, res) => {
 
 // http://localhost:5001/submit should return all the data the user entered
 app.post('/submit', (req, res) => {
-  res.send(req.body);
+  res.send({ ...req.body, newsletter: req.body.newsletter === 'on' });
 });
 
 app.listen(port, () => {

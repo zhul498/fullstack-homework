@@ -2,6 +2,9 @@
 
 // Add your function here
 const calculateChange = function calculateChange(amount) {
+  if (typeof amount !== 'number' || Number.isNaN(amount) || amount < 0) {
+    return `${amount} ==> Error: invalid input`;
+  }
   if (amount > 100) {
     return `$${amount} ==> Error: the number is too large`;
   }
@@ -16,13 +19,13 @@ const calculateChange = function calculateChange(amount) {
   const result = [];
   let cents = Math.round(amount * 100);
 
-  for (let i = 0; i < coins.length; i += 1) {
-    const count = Math.floor(cents / coins[i].value);
+  coins.forEach((coin) => {
+    const count = Math.floor(cents / coin.value);
     if (count > 0) {
-      result.push(`${count} ${count === 1 ? coins[i].name : coins[i].plural}`);
-      cents -= count * coins[i].value;
+      result.push(`${count} ${count === 1 ? coin.name : coin.plural}`);
+      cents -= count * coin.value;
     }
-  }
+  });
   return `$${amount} ==> ${result.join(', ')}`;
 };
 
@@ -43,3 +46,7 @@ console.log(calculateChange(1.41));
 // $1.41 ==> 1 dollar, 1 quarter, 1 dime, 1 nickel, 1 penny
 console.log(calculateChange(0.99));
 // $0.99 ==> 3 quarters, 2 dimes, 4 pennies
+console.log(calculateChange(-5));
+// -5 ==> Error: invalid input
+console.log(calculateChange('abc'));
+// abc ==> Error: invalid input
