@@ -1,0 +1,19 @@
+# Dependencies (installed with npm install, never committed)
+node_modules/
+
+# Environment variables / API keys
+.env
+
+# Build output
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local databases
+*.db
+
+# OS / editor files
+.DS_Store
+.vscode/

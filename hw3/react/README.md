@@ -1,16 +1,41 @@
-# React + Vite
+# React Tutorial: Tic-Tac-Toe
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+My completed version of the official React tutorial, [Tutorial: Tic-Tac-Toe](https://react.dev/learn/tutorial-tic-tac-toe) on react.dev.
 
-Currently, two official plugins are available:
+**Status: complete.** I finished every section, including "Adding time travel".
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## How to run
 
-## React Compiler
+```bash
+cd hw3/react
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Open the URL Vite prints (usually http://localhost:5173).
 
-## Expanding the ESLint configuration
+## How to test
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Click squares. The marks should alternate X and O, and the status line should show the next player.
+2. Clicking a square that's already filled does nothing.
+3. Get three in a row. The status should change to `Winner: X` (or `O`), and the board should stop accepting moves.
+4. Use the move list on the right ("Go to move #N") to jump back to an earlier move. Making a new move from there replaces the later history.
+
+## What the tutorial covers
+
+- **Components and props:** `Square`, `Board` and `Game` are function components that pass data down through props.
+- **State:** `useState` holds the board history and the current move.
+- **Lifting state up:** the state lives in `Game`, and `Board` and `Square` get values and click handlers through props.
+- **Immutability:** each move copies the squares array (`slice()`) instead of changing it, which is what makes time travel possible.
+- **Lists and keys:** the move history is rendered with `map()`, and each item has a `key`.
+
+## Files
+
+- `src/App.jsx`: all the tutorial code (`Square`, `Board`, `Game`, `calculateWinner`)
+- `src/index.css`: the tutorial's `styles.css`
+- `src/main.jsx`: Vite entry point that renders `<App />`
+
+## Issues and changes from the tutorial
+
+- **Local setup instead of CodeSandbox.** The tutorial's "download the sandbox" option for working locally gave me an empty zip. Instead I created the project with Vite (`npm create vite@latest react -- --template react`), put the tutorial's `App.js` code in `src/App.jsx` and its `styles.css` in `src/index.css`.
+- I deleted the Vite starter files I didn't need (`App.css`, `assets/`).
