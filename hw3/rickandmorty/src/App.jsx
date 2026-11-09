@@ -6,7 +6,7 @@ import Characters from './pages/Characters';
 import Species from './pages/Species';
 import Locations from './pages/Locations';
 
-export default function App() {
+const App = function App() {
   return (
     <>
       <nav>
@@ -27,4 +27,6 @@ export default function App() {
       </main>
     </>
   );
-}
+};
+
+export default App;

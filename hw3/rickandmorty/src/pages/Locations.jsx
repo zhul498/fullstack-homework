@@ -2,7 +2,7 @@ import { fetchAllLocations, groupBy, orUnknown } from '../api';
 import useFetch from '../useFetch';
 import Status from '../Status';
 
-export default function Locations() {
+const Locations = function Locations() {
   const { data: locations, loading, error } = useFetch(fetchAllLocations);
   const groups = locations ? groupBy(locations, (l) => orUnknown(l.type)) : [];
 
@@ -33,4 +33,6 @@ export default function Locations() {
       )}
     </>
   );
-}
+};
+
+export default Locations;

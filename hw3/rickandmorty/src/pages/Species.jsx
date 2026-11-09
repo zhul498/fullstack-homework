@@ -2,7 +2,7 @@ import { fetchFirst100Characters, groupBy, orUnknown } from '../api';
 import useFetch from '../useFetch';
 import Status from '../Status';
 
-export default function Species() {
+const Species = function Species() {
   const { data: characters, loading, error } = useFetch(fetchFirst100Characters);
   const groups = characters ? groupBy(characters, (c) => orUnknown(c.species)) : [];
 
@@ -23,4 +23,6 @@ export default function Species() {
       )}
     </>
   );
-}
+};
+
+export default Species;

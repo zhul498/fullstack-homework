@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 // Runs an async fetch function once and tracks loading / error / data.
-export default function useFetch(fetchFn) {
+const useFetch = function useFetch(fetchFn) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
@@ -22,4 +22,6 @@ export default function useFetch(fetchFn) {
   }, [fetchFn]);
 
   return { data, error, loading: !data && !error };
-}
+};
+
+export default useFetch;

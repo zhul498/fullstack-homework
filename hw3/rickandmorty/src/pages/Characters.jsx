@@ -2,7 +2,7 @@ import { fetchFirst100Characters, orUnknown } from '../api';
 import useFetch from '../useFetch';
 import Status from '../Status';
 
-export default function Characters() {
+const Characters = function Characters() {
   const { data: characters, loading, error } = useFetch(fetchFirst100Characters);
 
   return (
@@ -30,4 +30,6 @@ export default function Characters() {
       )}
     </>
   );
-}
+};
+
+export default Characters;

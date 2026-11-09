@@ -1,25 +1,25 @@
 const BASE_URL = 'https://rickandmortyapi.com/api';
 
-async function getJson(url) {
+const getJson = async function getJson(url) {
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Request failed (${response.status}): ${url}`);
   }
   return response.json();
-}
+};
 
 // The API returns 20 characters per page, so pages 1-5 = the first 100.
-export async function fetchFirst100Characters() {
+export const fetchFirst100Characters = async function fetchFirst100Characters() {
   const pageNumbers = [1, 2, 3, 4, 5];
   const pages = await Promise.all(
     pageNumbers.map((page) => getJson(`${BASE_URL}/character?page=${page}`)),
   );
   return pages.flatMap((page) => page.results ?? []).slice(0, 100);
-}
+};
 
 // Locations are paginated too: read the first page to learn how many pages
 // there are, then fetch the rest in parallel.
-export async function fetchAllLocations() {
+export const fetchAllLocations = async function fetchAllLocations() {
   const firstPage = await getJson(`${BASE_URL}/location`);
   const totalPages = firstPage.info?.pages ?? 1;
 
@@ -29,10 +29,10 @@ export async function fetchAllLocations() {
   );
 
   return [firstPage, ...otherPages].flatMap((page) => page.results ?? []);
-}
+};
 
 // Turns { key: [...] } groups into an array sorted by group size (largest first).
-export function groupBy(items, getKey) {
+export const groupBy = function groupBy(items, getKey) {
   const groups = {};
   items.forEach((item) => {
     const key = getKey(item);
@@ -42,13 +42,13 @@ export function groupBy(items, getKey) {
   return Object.entries(groups)
     .map(([key, members]) => ({ key, members }))
     .sort((a, b) => b.members.length - a.members.length || a.key.localeCompare(b.key));
-}
+};
 
 // Incomplete data: the API sometimes sends empty strings (a location with
 // type "") or the word "unknown". Treat missing, empty and "unknown" the same.
-export function orUnknown(value) {
+export const orUnknown = function orUnknown(value) {
   if (typeof value !== 'string') return 'Unknown';
   const trimmed = value.trim();
   if (trimmed === '' || trimmed.toLowerCase() === 'unknown') return 'Unknown';
   return trimmed;
-}
+};
