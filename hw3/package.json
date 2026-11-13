@@ -1,0 +1,13 @@
+{
+  "name": "hw3",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HW 3: Full Stack Frameworks and Libraries - React and Socket.IO tutorials plus a Rick and Morty API exercise",
+  "scripts": {
+    "install:all": "cd react && npm install && cd ../socketio && npm install && cd ../rickandmorty && npm install",
+    "react": "npm run dev --prefix react",
+    "socketio": "npm start --prefix socketio",
+    "rickandmorty": "npm run dev --prefix rickandmorty"
+  },
+  "license": "ISC"
+}
